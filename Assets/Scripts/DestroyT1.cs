@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class DestroyT1 : MonoBehaviour
 {
-    //[SerializeField] private float speed = 2;
-
-    // Actualiza la posición del cubo
-   /* void Update()
-    {
-        // Mueve el cubo hacia adelante en el eje Z
-        transform.Translate(0, 0, -1 * (speed * Time.deltaTime));
-    }*/
-
-    // Detecta la colisión del cubo con otro objeto
-   
+  
 
     private void OnTriggerEnter(Collider other)
     {

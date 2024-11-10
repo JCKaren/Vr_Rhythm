@@ -5,9 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField]private float speed = 2;
-    private Vector3 scale = Vector3.one;
-    private Vector3 spawnPosition;
-    private Vector3 spawnRotation;
+    //private Vector3 scale = Vector3.one;
+    //private Vector3 spawnPosition;
+    //private Vector3 spawnRotation;
     [SerializeField] private GameObject cubo;
 
 
