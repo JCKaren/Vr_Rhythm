@@ -503,7 +503,6 @@ GameObject:
   - component: {fileID: 666128954}
   - component: {fileID: 666128953}
   - component: {fileID: 666128952}
-  - component: {fileID: 666128951}
   - component: {fileID: 666128957}
   - component: {fileID: 666128956}
   m_Layer: 0
@@ -513,23 +512,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &666128951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666128950}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59eca3e296c9c9d4d9edcb940f0425b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnInterval: 1
-  Prefab1: {fileID: 6615955681214605588, guid: a3fed263bd91e4241b9dbef71ae416e5, type: 3}
-  Prefab2: {fileID: 2719034799180504983, guid: e81abd6421cac7c4ea45b5c26fd918d0, type: 3}
-  Prefab3: {fileID: 6153007512800063220, guid: 04729c838be5abe4abe7b342b7163c3d, type: 3}
-  Prefab4: {fileID: 2518941267508916076, guid: 4193ed747f0e5ce4aad5f302eb33b8ad, type: 3}
 --- !u!64 &666128952
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -727,7 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 666128956}
   spawnPrefabs:
-  - {fileID: 6185012219421150467, guid: 5538db3dd75401c43b67bac350a1f02c, type: 3}
+  - {fileID: 6655371428676453868, guid: 36d9f7965f1858b499728cd03f102aa0, type: 3}
   spawnThreshold: 0.1
   spectrumIndex: 1
   spawnInterval: 1
