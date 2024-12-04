@@ -6,13 +6,13 @@ public class AsSpawner : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource; // Fuente de audio
     [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>(); // Lista de prefabs a generar
-    [SerializeField] private float spawnThreshold = 0.1f; // Umbral de energÌa para generar el prefab
-    [SerializeField] private int spectrumIndex = 1; // Õndice de frecuencia a monitorear (1 = bajo)
-    [SerializeField] private float spawnInterval = 0.5f; // Intervalo mÌnimo entre spawns
+    [SerializeField] private float spawnThreshold = 0.1f; // Umbral de energ√≠a para generar el prefab
+    [SerializeField] private int spectrumIndex = 1; // √çndice de frecuencia a monitorear (1 = bajo)
+    [SerializeField] private float spawnInterval = 0.5f; // Intervalo m√≠nimo entre spawns
 
     private List<Vector3> spawnPositions = new List<Vector3>(); // Lista de posiciones de spawn
     private float[] spectrumData = new float[64]; // Array para los datos de espectro de frecuencia
-    private float lastSpawnTime; // ⁄ltimo tiempo de generaciÛn para evitar spawns r·pidos
+    private float lastSpawnTime; // √öltimo tiempo de generaci√≥n para evitar spawns r√°pidos
 
     void Start()
     {
@@ -25,10 +25,10 @@ public class AsSpawner : MonoBehaviour
         // Obtener datos de espectro del audio
         audioSource.GetSpectrumData(spectrumData, 0, FFTWindow.BlackmanHarris);
 
-        // Verifica si el valor de frecuencia actual supera el umbral y si ha pasado el tiempo mÌnimo entre spawns
+        // Verifica si el valor de frecuencia actual supera el umbral y si ha pasado el tiempo m√≠nimo entre spawns
         if (spectrumData[spectrumIndex] > spawnThreshold && Time.time > lastSpawnTime + spawnInterval)
         {
-            // Genera el prefab en sincronÌa con el ritmo y actualiza el tiempo del ˙ltimo spawn
+            // Genera el prefab en sincron√≠a con el ritmo y actualiza el tiempo del √∫ltimo spawn
             SpawnPrefab();
             lastSpawnTime = Time.time;
         }
@@ -36,7 +36,7 @@ public class AsSpawner : MonoBehaviour
 
     void AddToListPositions()
     {
-        // AÒade las posiciones definidas al array
+        // A√±ade las posiciones definidas al array
         spawnPositions.Add(new Vector3(-0.5f, 0.5f, 0));   // Izquierda arriba
         spawnPositions.Add(new Vector3(0.5f, 0.5f, 0));    // Derecha arriba
         spawnPositions.Add(new Vector3(-0.5f, -0.5f, 0));  // Izquierda abajo
@@ -45,15 +45,15 @@ public class AsSpawner : MonoBehaviour
 
     void SpawnPrefab()
     {
-        // Selecciona una posiciÛn y un prefab aleatorios de las listas
+        // Selecciona una posici√≥n y un prefab aleatorios de las listas
         int randomPositionIndex = Random.Range(0, spawnPositions.Count);
         int randomPrefabIndex = Random.Range(0, spawnPrefabs.Count);
 
         Vector3 spawnPosition = spawnPositions[randomPositionIndex];
         GameObject prefabToSpawn = spawnPrefabs[randomPrefabIndex];
 
-        // Instancia el prefab en la posiciÛn seleccionada
+        // Instancia el prefab en la posici√≥n seleccionada
         Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
-       // Debug.Log($"Prefab {prefabToSpawn.name} generado en posiciÛn {spawnPosition} en sincronÌa con el ritmo.");
+        Debug.Log($"Prefab {prefabToSpawn.name} generado en posici√≥n {spawnPosition} en sincron√≠a con el ritmo.");
     }
 }

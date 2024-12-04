@@ -14711,7 +14711,9 @@ GameObject:
   - component: {fileID: 4563802948693442}
   - component: {fileID: 198357973136645638}
   - component: {fileID: 199550515350852312}
+
   - component: {fileID: 5786454308639003877}
+
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -14754,6 +14756,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
   looping: 0
+
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19626,6 +19629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0470d726b44495147a8698ded8e7eb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+
 --- !u!1 &1988778204445182
 GameObject:
   m_ObjectHideFlags: 0

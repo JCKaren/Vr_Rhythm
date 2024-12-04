@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ExplotionDestroy : MonoBehaviour
 {
-    [SerializeField] private GameObject explosionPrefab; // Prefab de la explosi髇 a instanciar
+    [SerializeField] private GameObject explosionPrefab; // Prefab de la explosi贸n a instanciar
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,19 +18,20 @@ public class ExplotionDestroy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // Si se hace clic en el objeto, se destruye con el efecto de explosi髇
+        // Si se hace clic en el objeto, se destruye con el efecto de explosi贸n
         DestroyObjectWithExplosion();
     }
 
     private void DestroyObjectWithExplosion()
     {
-        // Instancia el efecto de explosi髇 en la posici髇 del objeto
+        // Instancia el efecto de explosi贸n en la posici贸n del objeto
         if (explosionPrefab != null)
         {
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-            // Destruye la explosi髇 despu閟 de un tiempo fijo (reemplaza 2f con la duraci髇 real de tu animaci髇)
+            // Destruye la explosi贸n despu茅s de un tiempo fijo (reemplaza 2f con la duraci贸n real de tu animaci贸n)
             Destroy(explosion, 1.8f);
+
         }
 
         // Verifica si el objeto tiene un padre
@@ -46,14 +47,14 @@ public class ExplotionDestroy : MonoBehaviour
         }
     }
 
-    // Corrutina para esperar a que las part韈ulas terminen
+    // Corrutina para esperar a que las part铆culas terminen
     private IEnumerator DestroyExplosionAfterParticles(GameObject explosion)
     {
         ParticleSystem[] particleSystems = explosion.GetComponentsInChildren<ParticleSystem>();
 
         if (particleSystems.Length > 0)
         {
-            // Espera hasta que todos los sistemas de part韈ulas hayan terminado
+            // Espera hasta que todos los sistemas de part铆culas hayan terminado
             foreach (var ps in particleSystems)
             {
                 while (ps.IsAlive())
@@ -63,7 +64,8 @@ public class ExplotionDestroy : MonoBehaviour
             }
         }
 
-        // Destruye el objeto de explosi髇
+        // Destruye el objeto de explosi贸n
+
         Destroy(explosion);
     }
 }
