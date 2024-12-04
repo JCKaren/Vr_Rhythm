@@ -609,7 +609,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8f3a9a6a193d89a43a4b386619af56c0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fd616989d6005b44ba172b97280e7a8e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -709,7 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 666128956}
   spawnPrefabs:
-  - {fileID: 6655371428676453868, guid: 36d9f7965f1858b499728cd03f102aa0, type: 3}
+  - {fileID: 2190674587874532965, guid: bd7be88a4b3e25348aae14afef4b1691, type: 3}
   spawnThreshold: 0.1
   spectrumIndex: 1
   spawnInterval: 1

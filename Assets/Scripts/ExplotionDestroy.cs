@@ -29,8 +29,8 @@ public class ExplotionDestroy : MonoBehaviour
         {
             GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
-            // Inicia una corrutina para destruir la explosión cuando se complete
-            StartCoroutine(DestroyExplosionAfterParticles(explosion));
+            // Destruye la explosión después de un tiempo fijo (reemplaza 2f con la duración real de tu animación)
+            Destroy(explosion, 1.8f);
         }
 
         // Verifica si el objeto tiene un padre
@@ -49,18 +49,21 @@ public class ExplotionDestroy : MonoBehaviour
     // Corrutina para esperar a que las partículas terminen
     private IEnumerator DestroyExplosionAfterParticles(GameObject explosion)
     {
-        ParticleSystem particleSystem = explosion.GetComponent<ParticleSystem>();
+        ParticleSystem[] particleSystems = explosion.GetComponentsInChildren<ParticleSystem>();
 
-        if (particleSystem != null)
+        if (particleSystems.Length > 0)
         {
-            // Espera hasta que el sistema de partículas se complete
-            while (particleSystem.IsAlive())
+            // Espera hasta que todos los sistemas de partículas hayan terminado
+            foreach (var ps in particleSystems)
             {
-                yield return null; // Espera hasta el siguiente frame
+                while (ps.IsAlive())
+                {
+                    yield return null; // Espera al siguiente frame
+                }
             }
         }
 
-        // Una vez que las partículas se han agotado, destruye el objeto de explosión
+        // Destruye el objeto de explosión
         Destroy(explosion);
     }
 }
