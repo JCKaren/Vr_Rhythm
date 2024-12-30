@@ -1,71 +1,64 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using TMPro; // For TextMeshPro
 
 public class ExplotionDestroy : MonoBehaviour
 {
-    [SerializeField] private GameObject explosionPrefab; // Prefab de la explosión a instanciar
+    [SerializeField] private GameObject explosionPrefab; // Prefab for explosion
+    [SerializeField] private TextMeshProUGUI destroyedBlocksText; // Reference to TextMeshProUGUI
+    private static int destroyedBlocksCount = 0;
 
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        // Si el cubo colisiona con un objeto con la etiqueta "Wall"
-        if (other.gameObject.CompareTag("Wall"))
+        // Dynamically find the TextMeshPro component if not assigned in the Inspector
+        if (destroyedBlocksText == null)
         {
-            Destroy(gameObject);
-        }
-    }
+            GameObject puntajeObject = GameObject.Find("Puntaje");
+            Debug.Log("Puntaje object found: " + puntajeObject); // Debug to check if Puntaje is found
 
-    private void OnMouseDown()
-    {
-        // Si se hace clic en el objeto, se destruye con el efecto de explosión
-        DestroyObjectWithExplosion();
-    }
-
-    private void DestroyObjectWithExplosion()
-    {
-        // Instancia el efecto de explosión en la posición del objeto
-        if (explosionPrefab != null)
-        {
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-
-            // Destruye la explosión después de un tiempo fijo (reemplaza 2f con la duración real de tu animación)
-            Destroy(explosion, 1.8f);
-
-        }
-
-        // Verifica si el objeto tiene un padre
-        if (transform.parent != null)
-        {
-            // Destruye el objeto padre
-            Destroy(transform.parent.gameObject);
-        }
-        else
-        {
-            // Si no tiene padre, destruye solo este objeto
-            Destroy(gameObject);
-        }
-    }
-
-    // Corrutina para esperar a que las partículas terminen
-    private IEnumerator DestroyExplosionAfterParticles(GameObject explosion)
-    {
-        ParticleSystem[] particleSystems = explosion.GetComponentsInChildren<ParticleSystem>();
-
-        if (particleSystems.Length > 0)
-        {
-            // Espera hasta que todos los sistemas de partículas hayan terminado
-            foreach (var ps in particleSystems)
+            if (puntajeObject != null)
             {
-                while (ps.IsAlive())
-                {
-                    yield return null; // Espera al siguiente frame
-                }
+                destroyedBlocksText = puntajeObject.GetComponentInChildren<TextMeshProUGUI>();
+                Debug.Log("Found TextMeshProUGUI: " + destroyedBlocksText); // Debug to check if TextMeshProUGUI is found
             }
         }
 
-        // Destruye el objeto de explosión
+        if (destroyedBlocksText == null)
+        {
+            Debug.LogError("Destroyed Blocks Text UI element not found! Ensure it's assigned or exists in the scene.");
+        }
+    }
 
-        Destroy(explosion);
+
+    private void OnMouseDown()
+    {
+        // Destroy block on mouse click with an explosion effect
+        DestroyObjectWithExplosion();
+    }
+
+    private void DestroyBlock()
+    {
+        // Increment the counter
+        destroyedBlocksCount++;
+
+        // Update the TextMeshProUGUI element
+        if (destroyedBlocksText != null)
+        {
+            destroyedBlocksText.text = $"Destroyed Blocks: {destroyedBlocksCount} / 91";
+        }
+
+        // Destroy the GameObject
+        Destroy(gameObject);
+    }
+    private void DestroyObjectWithExplosion()
+    {
+        // Instantiate explosion effect at the block's position
+        if (explosionPrefab != null)
+        {
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(explosion, 1.8f); // Destroy explosion effect after 1.8 seconds
+        }
+
+        // Destroy the block and increment the counter
+        DestroyBlock();
     }
 }

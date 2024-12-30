@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float speed = 2;
-    //private Vector3 spawnRotation;
+    private static float globalSpeed = 2f; // Shared speed value for all cubes
 
-    // Update is called once per frame
-    void Update()
+    private float speed; // Instance-specific speed
+
+    void Start()
     {
-        transform.Translate(0,0, -1*(speed * Time.deltaTime));
-
+        // Assign the current global speed to this instance
+        speed = globalSpeed;
     }
 
+    void Update()
+    {
+        transform.Translate(0, 0, -1 * (speed * Time.deltaTime));
+    }
+
+    public static void UpdateGlobalSpeed(float newSpeed)
+    {
+        // Update the global speed for all cubes
+        globalSpeed = newSpeed;
+    }
 }

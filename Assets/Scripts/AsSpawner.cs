@@ -55,5 +55,6 @@ public class AsSpawner : MonoBehaviour
         // Instancia el prefab en la posición seleccionada
         Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
         Debug.Log($"Prefab {prefabToSpawn.name} generado en posición {spawnPosition} en sincronía con el ritmo.");
+ 
     }
 }
