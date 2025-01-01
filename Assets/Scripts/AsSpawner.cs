@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class AsSpawner : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource; // Fuente de audio
-    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>(); // Lista de prefabs a generar
-    [SerializeField] private float spawnThreshold = 0.1f; // Umbral de energía para generar el prefab
-    [SerializeField] private int spectrumIndex = 1; // Índice de frecuencia a monitorear (1 = bajo)
-    [SerializeField] private float spawnInterval = 0.5f; // Intervalo mínimo entre spawns
+    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private List<GameObject> spawnPrefabs = new List<GameObject>(); 
+    [SerializeField] private float spawnThreshold = 0.1f; 
+    [SerializeField] private int spectrumIndex = 1; 
+    [SerializeField] private float spawnInterval = 0.5f; 
 
-    private List<Vector3> spawnPositions = new List<Vector3>(); // Lista de posiciones de spawn
-    private float[] spectrumData = new float[64]; // Array para los datos de espectro de frecuencia
-    private float lastSpawnTime; // Último tiempo de generación para evitar spawns rápidos
+    private List<Vector3> spawnPositions = new List<Vector3>(); 
+    private float[] spectrumData = new float[64]; 
+    private float lastSpawnTime;
 
+    // Inicializa las posiciones y los prefabs
     void Start()
     {
-        // Inicializa las posiciones y los prefabs
         AddToListPositions();
     }
 
@@ -36,7 +36,6 @@ public class AsSpawner : MonoBehaviour
 
     void AddToListPositions()
     {
-        // Añade las posiciones definidas al array
         spawnPositions.Add(new Vector3(-0.5f, 0.5f, 0));   // Izquierda arriba
         spawnPositions.Add(new Vector3(0.5f, 0.5f, 0));    // Derecha arriba
         spawnPositions.Add(new Vector3(-0.5f, -0.5f, 0));  // Izquierda abajo
